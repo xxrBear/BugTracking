@@ -25,7 +25,6 @@ def send_sms(request):
 from django import forms
 from user import models
 from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError
 
 
 class RegisterModelForm(forms.ModelForm):

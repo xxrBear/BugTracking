@@ -45,7 +45,6 @@ def register(request):
 
         # 方式二
 
-
         return JsonResponse({'status': True, 'data': '/login/'})
 
     return JsonResponse({'status': False, 'error': form.errors})

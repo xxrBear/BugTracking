@@ -146,6 +146,16 @@ WHITE_REGEX_URL_LIST = [
     "/price/",
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://localhost:6379',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
+
 try:
     from .local_settings import *
 except ImportError:

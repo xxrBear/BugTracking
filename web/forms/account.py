@@ -133,11 +133,12 @@ class SendSmsForm(forms.Form):
                 raise ValidationError('手机号已存在')
 
         code = random.randrange(1000, 9999)
+        print(code)
 
         # 发送短信
-        sms = send_sms_single(mobile_phone, template_id, [code, ])
-        if sms['result'] != 0:
-            raise ValidationError("短信发送失败，{}".format(sms['errmsg']))
+        # cancel
+        # if sms['result'] != 0:
+        #     raise ValidationError("短信发送失败，{}".format(sms['errmsg']))
 
         # 验证码 写入redis（django-redis）
         conn = get_redis_connection()
@@ -205,12 +206,13 @@ class LoginForm(BootStrapForm, forms.Form):
         # 读取用户输入的yanzhengm
         code = self.cleaned_data['code']
 
-        # 去session获取自己的验证码
-        session_code = self.request.session.get('image_code')
-        if not session_code:
-            raise ValidationError('验证码已过期，请重新获取')
-
-        if code.strip().upper() != session_code.strip().upper():
-            raise ValidationError('验证码输入错误')
+        # # 去session获取自己的验证码
+        # session_code = self.request.session.get('image_code')
+        # if not session_code:
+        #     raise ValidationError('验证码已过期，请重新获取')
+        #
+        # if code.strip().upper() != session_code.strip().upper():
+        #     raise ValidationError('验证码输入错误')
 
         return code
+
